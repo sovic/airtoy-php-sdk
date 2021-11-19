@@ -317,12 +317,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "bc2442b478916b4447190c34aece742aa1f988dd"
+                "reference": "8a0da9e2c9a96425395e0af80bd3aece26576245"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/bc2442b478916b4447190c34aece742aa1f988dd",
-                "reference": "bc2442b478916b4447190c34aece742aa1f988dd",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/8a0da9e2c9a96425395e0af80bd3aece26576245",
+                "reference": "8a0da9e2c9a96425395e0af80bd3aece26576245",
                 "shasum": ""
             },
             "conflict": {
@@ -458,7 +458,7 @@
                 "kreait/firebase-php": ">=3.2,<3.8.1",
                 "la-haute-societe/tcpdf": "<6.2.22",
                 "laminas/laminas-http": "<2.14.2",
-                "laravel/framework": "<=8.70.2",
+                "laravel/framework": "<6.20.26|>=7,<7.30.5|>=8,<8.40",
                 "laravel/socialite": ">=1,<1.0.99|>=2,<2.0.10",
                 "lavalite/cms": "<=5.8",
                 "lcobucci/jwt": ">=3.4,<3.4.6|>=4,<4.0.4|>=4.1,<4.1.5",
@@ -731,7 +731,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-18T21:12:04+00:00"
+            "time": "2021-11-19T12:23:14+00:00"
         }
     ],
     "aliases": [],
