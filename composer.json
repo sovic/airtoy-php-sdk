@@ -20,9 +20,11 @@
     },
     "require": {
         "php": ">=7.4",
+        "ext-xml": "*",
         "symfony/http-foundation": "^5.3"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "phpunit/phpunit": "^9.5"
     }
 }
