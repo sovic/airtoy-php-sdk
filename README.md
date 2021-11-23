@@ -12,4 +12,8 @@ Using [Composer](https://getcomposer.org/doc/00-intro.md)
 composer require sovic/mobilni-platby-cz-php-sdk
 ```
 
-## Usage
+## Tests
+
+```bash
+./vendor/bin/phpunit tests
+```

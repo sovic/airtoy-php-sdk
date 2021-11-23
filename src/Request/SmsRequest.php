@@ -1,17 +1,17 @@
 <?php
 
-namespace MobilniPlatbyCz;
+namespace MobilniPlatbyCz\Request;
 
-use DateTime;
+use DateTimeImmutable;
 use InvalidArgumentException;
-use Symfony\Component\HttpFoundation\Response;
+use MobilniPlatbyCz\Response\SmsResponse;
 
 class SmsRequest
 {
     private const AVAILABLE_OPERATORS = ['TMOBILE', 'O2', 'VODAFONE', 'ORANGE', 'CTYRKA'];
     private const AVAILABLE_COUNTRIES = ['CZ', 'PL', 'SK'];
 
-    private DateTime $dateTime;
+    private DateTimeImmutable $dateTime;
     private string $phone;
     private string $message;
     private string $shortCode;
@@ -20,12 +20,12 @@ class SmsRequest
     private int $attempt;
     private int $id;
 
-    public function getDateTime(): DateTime
+    public function getDateTime(): DateTimeImmutable
     {
         return $this->dateTime;
     }
 
-    public function setDateTime(DateTime $dateTime): void
+    public function setDateTime(DateTimeImmutable $dateTime): void
     {
         $this->dateTime = $dateTime;
     }
@@ -45,6 +45,7 @@ class SmsRequest
 
     public function setPhone(string $phone): void
     {
+        // TODO validate phone
         $this->phone = $phone;
     }
 
@@ -65,6 +66,7 @@ class SmsRequest
 
     public function setShortCode(string $shortCode): void
     {
+        // TODO validate shortCode
         $this->shortCode = $shortCode;
     }
 
@@ -116,22 +118,8 @@ class SmsRequest
         $this->id = $id;
     }
 
-    public function sendMoResponse(?string $message = null)
+    public function execute(): SmsResponse
     {
-        if (null === $message) {
-            $message = '';
-        }
-        $this->sendSuccessResponse($message);
-    }
-
-    public function sendSuccessResponse(string $message)
-    {
-        $headers = [
-            'Content-Type' => 'text/plain',
-            'Content-Length' => strlen($message),
-        ];
-        $response = new Response($message, Response::HTTP_OK, $headers);
-
-        $response->send();
+        return new SmsResponse(clone $this);
     }
 }
