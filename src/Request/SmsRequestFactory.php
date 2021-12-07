@@ -46,6 +46,10 @@ class SmsRequestFactory
                 throw new InvalidArgumentException('Invalid query parameter [' . $key . ']');
             }
         }
+        // status is required
+        if (empty($query['status']) || !is_string($query['status'])) {
+            throw new InvalidArgumentException('Invalid query parameter [status]');
+        }
 
         $smsRequest = new SmsDeliveryRequest();
         /** Timestamp ISO 8601 (yyyy-MM-ddTHH:mm:ss) SEČ */
