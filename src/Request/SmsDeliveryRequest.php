@@ -78,9 +78,11 @@ class SmsDeliveryRequest implements SmsRequestInterface
 
     public function setStatusMessage(?string $statusMessage = null): void
     {
-        if (null !== $statusMessage && $this->getStatus() !== 'UNDELIVERED') {
-            throw new InvalidArgumentException('Only available for UNDELIVERED status');
-        }
+        // TODO gateway sends some value even for DELIVERED status, documentation unclear
+        // if (null !== $statusMessage && $this->getStatus() !== 'UNDELIVERED') {
+        //     throw new InvalidArgumentException('Only available for UNDELIVERED status');
+        // }
+
         if (null !== $statusMessage && !in_array($statusMessage, self::AVAILABLE_MESSAGES, true)) {
             throw new InvalidArgumentException('Invalid message');
         }
