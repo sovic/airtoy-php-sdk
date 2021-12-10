@@ -11,10 +11,10 @@ final class SmsRequestTest extends TestCase
     {
         $query = [
             'timestamp' => '2021-11-19T11:10:15',
-            'phone' => '420123456789',
+            'phone' => '+420123456789',
             'sms' => 'Sms message text',
             'shortcode' => '90333',
-            'country' => 'SK',
+            'country' => 'CZ',
             'operator' => 'TMOBILE',
             'att' => 1,
             'id' => rand(500, 1000),
@@ -25,11 +25,12 @@ final class SmsRequestTest extends TestCase
         $this->assertInstanceOf(SmsResponse::class, $response);
 
         ob_start();
+        $response->setShortCodes(['90333' => '90333099']);
         $response->send('Message');
         $content = ob_get_contents();
         ob_end_clean();
 
-        $this->assertEquals('Message;90333priceEUR*100', $content);
+        $this->assertEquals('Message;90333099', $content);
     }
 
     public function testSmsDeliveryResponse(): void
