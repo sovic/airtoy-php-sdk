@@ -7,6 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 final class SmsRequestTest extends TestCase
 {
+    /**
+     * @return void
+     * @throws Exception
+     */
     public function testSmsResponse(): void
     {
         $query = [
@@ -17,7 +21,7 @@ final class SmsRequestTest extends TestCase
             'country' => 'CZ',
             'operator' => 'TMOBILE',
             'att' => 1,
-            'id' => rand(500, 1000),
+            'id' => random_int(500, 1000),
         ];
         $request = SmsRequestFactory::createFromQuery($query);
         $response = $request->execute();
@@ -27,12 +31,15 @@ final class SmsRequestTest extends TestCase
         ob_start();
         $response->setShortCodes(['90333' => '90333099']);
         $response->send('Message');
-        $content = ob_get_contents();
-        ob_end_clean();
+        $content = ob_get_clean();
 
         $this->assertEquals('Message;90333099', $content);
     }
 
+    /**
+     * @return void
+     * @throws Exception
+     */
     public function testSmsDeliveryResponse(): void
     {
         $query = [
@@ -43,7 +50,7 @@ final class SmsRequestTest extends TestCase
             'ord' => null,
             'cnt' => null,
             'att' => 1,
-            'id' => rand(500, 1000),
+            'id' => random_int(500, 1000),
         ];
         $request = SmsRequestFactory::createDeliveryFromQuery($query);
         $response = $request->execute();
@@ -52,8 +59,7 @@ final class SmsRequestTest extends TestCase
 
         ob_start();
         $response->sendEmpty();
-        $content = ob_get_contents();
-        ob_end_clean();
+        $content = ob_get_clean();
 
         $this->assertEmpty($content);
     }
